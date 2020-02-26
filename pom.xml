@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.graphql-java-generator</groupId>
+		<artifactId>graphql-maven-plugin-samples</artifactId>
+		<version>1.4-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.graphql-java-generator</groupId>
+	<artifactId>graphql-inspector-for-graphql-plugin</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<graphql-java-generator.version>1.3.2</graphql-java-generator.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.graphql-java-generator</groupId>
+				<artifactId>graphql-maven-plugin</artifactId>
+				<version>${graphql-java-generator.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>graphql</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mode>client</mode>
+					<packageName>com.graphql_java_generator.client.introspection</packageName>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<extensions>
+			<!-- Adding these extensions prevents the error below, with JDK 9 and higher: -->
+			<!-- NoSuchMethodError: 'java.lang.String javax.annotation.Resource.lookup()' -->
+			<extension>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>1.3.2</version>
+			</extension>
+			<extension>
+				<groupId>javax.annotation</groupId>
+				<artifactId>jsr250-api</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
+
+	</build>
+
+	<dependencies>
+		<!-- Dependencies for GraphQL -->
+		<dependency>
+			<groupId>com.graphql-java-generator</groupId>
+			<artifactId>graphql-java-client-dependencies</artifactId>
+			<type>pom</type>
+			<version>${graphql-java-generator.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>
